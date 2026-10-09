@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:java="http://www.yworks.com/xml/yfiles-common/1.0/java" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+  <key for="node" id="d6" yfiles.type="nodegraphics"/>
+  <key for="edge" id="d10" yfiles.type="edgegraphics"/>
+  <key attr.name="weight" attr.type="double" for="edge" id="d11"><default>1</default></key>
+  <graph edgedefault="directed" id="G">
+    <node id="n0">
+      <data key="d6"><y:ShapeNode><y:Geometry height="30.0" width="30.0" x="100.0" y="100.0"/><y:NodeLabel>Origem</y:NodeLabel><y:Shape type="ellipse"/></y:ShapeNode></data>
+    </node>
+    <node id="n1">
+      <data key="d6"><y:ShapeNode><y:Geometry height="30.0" width="30.0" x="250.0" y="40.0"/><y:NodeLabel>Meio</y:NodeLabel><y:Shape type="ellipse"/></y:ShapeNode></data>
+    </node>
+    <node id="n2">
+      <data key="d6"><y:ShapeNode><y:Geometry height="30.0" width="30.0" x="400.0" y="100.0"/><y:NodeLabel>Destino final</y:NodeLabel><y:Shape type="ellipse"/></y:ShapeNode></data>
+    </node>
+    <edge id="e0" source="n0" target="n1">
+      <data key="d10"><y:PolyLineEdge><y:Arrows source="none" target="standard"/><y:EdgeLabel>rota 1</y:EdgeLabel></y:PolyLineEdge></data>
+      <data key="d11">2.5</data>
+    </edge>
+    <edge id="e1" source="n1" target="n2">
+      <data key="d10"><y:PolyLineEdge><y:Arrows source="none" target="standard"/></y:PolyLineEdge></data>
+    </edge>
+    <edge id="e2" source="n0" target="n2">
+      <data key="d10"><y:PolyLineEdge><y:Arrows source="standard" target="standard"/></y:PolyLineEdge></data>
+      <data key="d11">7</data>
+    </edge>
+  </graph>
+</graphml>

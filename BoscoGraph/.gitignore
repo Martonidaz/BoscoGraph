@@ -1,0 +1,15 @@
+# Arquivos gerados (não vão para o repositório)
+__pycache__/
+*.pyc
+# Saída do PyInstaller e do Inno Setup
+build/
+dist/
+instalador/saida/
+# O Tesseract que o instalador pode levar junto (copiado na hora de gerar; veja o LEIAME)
+instalador/tesseract/
+# As imagens das telas do instalador (o construir.py gera de novo a cada vez)
+instalador/assistente_*.bmp
+# Gravação de modelo interrompida no meio
+modelos/*.tmp
+# A lista dos .bosco abertos por último (cada computador tem a sua)
+modelos/recentes.txt

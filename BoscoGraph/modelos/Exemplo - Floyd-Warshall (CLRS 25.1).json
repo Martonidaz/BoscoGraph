@@ -1,0 +1,71 @@
+{
+  "nome": "Exemplo - Floyd-Warshall (CLRS 25.1)",
+  "vertices": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "arestas": [
+    {
+      "origem": "1",
+      "destino": "2",
+      "nome": "",
+      "peso": 3
+    },
+    {
+      "origem": "1",
+      "destino": "3",
+      "nome": "",
+      "peso": 8
+    },
+    {
+      "origem": "1",
+      "destino": "5",
+      "nome": "",
+      "peso": -4
+    },
+    {
+      "origem": "2",
+      "destino": "4",
+      "nome": "",
+      "peso": 1
+    },
+    {
+      "origem": "2",
+      "destino": "5",
+      "nome": "",
+      "peso": 7
+    },
+    {
+      "origem": "3",
+      "destino": "2",
+      "nome": "",
+      "peso": 4
+    },
+    {
+      "origem": "4",
+      "destino": "1",
+      "nome": "",
+      "peso": 2
+    },
+    {
+      "origem": "4",
+      "destino": "3",
+      "nome": "",
+      "peso": -5
+    },
+    {
+      "origem": "5",
+      "destino": "4",
+      "nome": "",
+      "peso": 6
+    }
+  ],
+  "ordenar": true,
+  "inicio": "1",
+  "direcionado": true,
+  "algoritmo": "floyd_warshall",
+  "destino": "3"
+}

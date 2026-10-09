@@ -1,0 +1,275 @@
+{
+  "nome": "Exemplo - A estrela (Romênia)",
+  "vertices": [
+    "Arad",
+    "Bucharest",
+    "Craiova",
+    "Drobeta",
+    "Eforie",
+    "Fagaras",
+    "Giurgiu",
+    "Hirsova",
+    "Iasi",
+    "Lugoj",
+    "Mehadia",
+    "Neamt",
+    "Oradea",
+    "Pitesti",
+    "Rimnicu",
+    "Sibiu",
+    "Timisoara",
+    "Urziceni",
+    "Vaslui",
+    "Zerind"
+  ],
+  "arestas": [
+    {
+      "origem": "Arad",
+      "destino": "Zerind",
+      "nome": "",
+      "peso": 75
+    },
+    {
+      "origem": "Arad",
+      "destino": "Sibiu",
+      "nome": "",
+      "peso": 140
+    },
+    {
+      "origem": "Arad",
+      "destino": "Timisoara",
+      "nome": "",
+      "peso": 118
+    },
+    {
+      "origem": "Zerind",
+      "destino": "Oradea",
+      "nome": "",
+      "peso": 71
+    },
+    {
+      "origem": "Oradea",
+      "destino": "Sibiu",
+      "nome": "",
+      "peso": 151
+    },
+    {
+      "origem": "Timisoara",
+      "destino": "Lugoj",
+      "nome": "",
+      "peso": 111
+    },
+    {
+      "origem": "Lugoj",
+      "destino": "Mehadia",
+      "nome": "",
+      "peso": 70
+    },
+    {
+      "origem": "Mehadia",
+      "destino": "Drobeta",
+      "nome": "",
+      "peso": 75
+    },
+    {
+      "origem": "Drobeta",
+      "destino": "Craiova",
+      "nome": "",
+      "peso": 120
+    },
+    {
+      "origem": "Craiova",
+      "destino": "Rimnicu",
+      "nome": "",
+      "peso": 146
+    },
+    {
+      "origem": "Craiova",
+      "destino": "Pitesti",
+      "nome": "",
+      "peso": 138
+    },
+    {
+      "origem": "Sibiu",
+      "destino": "Fagaras",
+      "nome": "",
+      "peso": 99
+    },
+    {
+      "origem": "Sibiu",
+      "destino": "Rimnicu",
+      "nome": "",
+      "peso": 80
+    },
+    {
+      "origem": "Rimnicu",
+      "destino": "Pitesti",
+      "nome": "",
+      "peso": 97
+    },
+    {
+      "origem": "Fagaras",
+      "destino": "Bucharest",
+      "nome": "",
+      "peso": 211
+    },
+    {
+      "origem": "Pitesti",
+      "destino": "Bucharest",
+      "nome": "",
+      "peso": 101
+    },
+    {
+      "origem": "Bucharest",
+      "destino": "Giurgiu",
+      "nome": "",
+      "peso": 90
+    },
+    {
+      "origem": "Bucharest",
+      "destino": "Urziceni",
+      "nome": "",
+      "peso": 85
+    },
+    {
+      "origem": "Urziceni",
+      "destino": "Hirsova",
+      "nome": "",
+      "peso": 98
+    },
+    {
+      "origem": "Hirsova",
+      "destino": "Eforie",
+      "nome": "",
+      "peso": 86
+    },
+    {
+      "origem": "Urziceni",
+      "destino": "Vaslui",
+      "nome": "",
+      "peso": 142
+    },
+    {
+      "origem": "Vaslui",
+      "destino": "Iasi",
+      "nome": "",
+      "peso": 92
+    },
+    {
+      "origem": "Iasi",
+      "destino": "Neamt",
+      "nome": "",
+      "peso": 87
+    }
+  ],
+  "ordenar": true,
+  "inicio": "Arad",
+  "direcionado": false,
+  "algoritmo": "a_estrela",
+  "destino": "Bucharest",
+  "heuristica": {
+    "Arad": 366,
+    "Bucharest": 0,
+    "Craiova": 160,
+    "Drobeta": 242,
+    "Eforie": 161,
+    "Fagaras": 176,
+    "Giurgiu": 77,
+    "Hirsova": 151,
+    "Iasi": 226,
+    "Lugoj": 244,
+    "Mehadia": 241,
+    "Neamt": 234,
+    "Oradea": 380,
+    "Pitesti": 100,
+    "Rimnicu": 193,
+    "Sibiu": 253,
+    "Timisoara": 329,
+    "Urziceni": 80,
+    "Vaslui": 199,
+    "Zerind": 374
+  },
+  "posicoes": {
+    "Arad": [
+      91,
+      108
+    ],
+    "Bucharest": [
+      400,
+      273
+    ],
+    "Craiova": [
+      253,
+      312
+    ],
+    "Drobeta": [
+      165,
+      301
+    ],
+    "Eforie": [
+      562,
+      307
+    ],
+    "Fagaras": [
+      305,
+      151
+    ],
+    "Giurgiu": [
+      375,
+      330
+    ],
+    "Hirsova": [
+      534,
+      250
+    ],
+    "Iasi": [
+      473,
+      94
+    ],
+    "Lugoj": [
+      165,
+      221
+    ],
+    "Mehadia": [
+      168,
+      261
+    ],
+    "Neamt": [
+      406,
+      63
+    ],
+    "Oradea": [
+      131,
+      29
+    ],
+    "Pitesti": [
+      320,
+      232
+    ],
+    "Rimnicu": [
+      233,
+      190
+    ],
+    "Sibiu": [
+      207,
+      143
+    ],
+    "Timisoara": [
+      94,
+      190
+    ],
+    "Urziceni": [
+      456,
+      250
+    ],
+    "Vaslui": [
+      509,
+      156
+    ],
+    "Zerind": [
+      108,
+      69
+    ]
+  },
+  "arrumacao": "arquivo"
+}

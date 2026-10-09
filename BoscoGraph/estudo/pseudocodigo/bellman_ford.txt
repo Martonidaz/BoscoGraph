@@ -1,0 +1,27 @@
+// Algoritmo de Bellman-Ford, como BELLMAN-FORD(G, w, s) do livro do Cormen (CLRS)
+// Aceita pesos negativos: em cada rodada relaxa TODAS as arestas; |V| − 1 rodadas bastam.
+// Se depois disso alguma aresta ainda diminui uma distância, há um CICLO NEGATIVO alcançável.
+// Melhoria: se uma rodada não muda nada, as próximas também não mudariam, e a busca para antes.
+//   G.E -> as arestas na ordem de criação; no não orientado, cada uma nos dois sentidos
+
+BELLMAN-FORD(G, w, s)
+    para cada vértice v em G.V                          // @cada_vertice
+        v.d = ∞                                         // @d_infinito
+        v.π = NIL                                       // @inicializar
+    s.d = 0                                             // @origem
+    parou_antes = FALSO                                 // @parou_falso
+    para rodada = 1 até |G.V| − 1                       // @rodada
+        mudou = FALSO                                   // @mudou_falso
+        para cada aresta (u, v) em G.E                  // @cada_arco
+            se u.d + w(u, v) < v.d                      // @relaxar_nao
+                v.d = u.d + w(u, v)                     // @relaxar_melhorou
+                v.π = u                                 // @pai_v
+                mudou = VERDADEIRO                      // @mudou
+        se não mudou                                    // @se_nao_mudou
+            parou_antes = VERDADEIRO                    // @rodada_sem_mudanca
+            interrompa as rodadas                       // @para
+    se não parou_antes                                  // @se_nao_parou
+        para cada aresta (u, v) em G.E                  // @verificar_ciclo
+            se u.d + w(u, v) < v.d                      // @ainda_diminui
+                devolva FALSO                           // @ciclo_negativo
+    devolva VERDADEIRO                                  // @sem_ciclo_negativo

@@ -1,0 +1,14 @@
+/* Uma rede de computadores (exemplo para o BoscoGraph) */
+digraph "rede" {
+  rankdir=LR;                       // atributo do grafo: não muda nada na importação
+  node [shape=circle, style=filled];
+  edge [weight=1];                  # padrão: as arestas sem peso próprio ficam com 1 (o # também comenta)
+  R1 [label="Roteador 1"];
+  R2; R3; "Servidor web";
+  R1 -> R2 [label="10"];            // rótulo numérico: vira o peso
+  R2 -> R3 -> "Servidor web" [weight=4, label="fibra"];
+  R1:leste -> R3:oeste;             // portas (:leste) são ignoradas
+  R3 -> {R1 R2} [weight="2.5"];
+  subgraph cluster_backup { label="Backup"; B1 -> B2 }
+  R2 -> B1
+}

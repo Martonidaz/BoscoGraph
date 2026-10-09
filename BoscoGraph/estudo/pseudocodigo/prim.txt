@@ -1,0 +1,45 @@
+// Algoritmo de Prim (árvore geradora mínima), como MST-PRIM(G, w, r) do livro do Cormen (CLRS), na mesma
+// forma do Dijkstra daqui: a fila de prioridade Q só guarda os vértices já alcançados
+//   v.chave -> o peso da aresta mais leve conhecida que liga v à árvore (∞ = nenhuma ainda)
+//   v.π     -> a outra ponta dessa aresta, que já está na árvore
+//   v.cor   -> BRANCO (fora, sem ligação), CINZA (em Q) ou PRETO (já está na árvore)
+//   w(u, v) -> o peso da aresta u — v
+// No livro, o grafo é conexo e há uma raiz r. Aqui, como no DFS(G), uma árvore nova começa em cada
+// parte desligada (as raízes vêm em ordem, a escolhida primeiro): é a floresta geradora mínima.
+
+PRIM(G, w, raízes)
+    para cada vértice v em G.V                          // @cada_vertice
+        v.cor = BRANCO                                  // @pinta_branco
+        v.chave = ∞                                     // @chave_infinito
+        v.π = NIL                                       // @inicializar
+    para cada r em raízes                               // @cada_raiz
+        se r.cor == BRANCO                              // @raiz_branca
+            CRESCER(G, w, r)                            // @chama_crescer
+
+CRESCER(G, w, r)
+    // a árvore que começa em r cresce até Q esvaziar
+    r.chave = 0                                         // @raiz_chave
+    r.cor = CINZA                                       // @raiz_cinza
+    Q = ∅
+    INSERIR(Q, r)                                       // @raiz
+    enquanto Q ≠ ∅                                      // @enquanto_fila
+        u = EXTRAIR-MÍNIMO(Q)                           // @chama_extrair
+        u.cor = PRETO                                   // @extrair
+        para cada v em G.Adj[u]                         // @cada_vizinho
+            se v.cor == PRETO                           // @ignorar_vizinho
+                pule para o próximo vizinho             // @pula_vizinho
+            se w(u, v) < v.chave                        // @atualizar_nao
+                v.chave = w(u, v)                       // @atualizar_melhorou
+                v.π = u                                 // @pai_v
+                se v.cor == BRANCO                      // @se_branco
+                    v.cor = CINZA                       // @pinta_cinza
+                    INSERIR(Q, v)                       // @entra_na_fila
+
+EXTRAIR-MÍNIMO(Q)
+    // o vértice de Q com a menor chave (no empate, o que entrou primeiro)
+    menor = o primeiro de Q                             // @menor_primeiro
+    para cada v em Q                                    // @cada_da_fila
+        se v.chave < menor.chave                        // @compara_chave
+            menor = v                                   // @novo_menor
+    tirar menor de Q                                    // @tira_da_fila
+    devolva menor                                       // @devolve_menor

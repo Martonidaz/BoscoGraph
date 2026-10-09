@@ -1,0 +1,45 @@
+// Busca de aprofundamento iterativo, como ITERATIVE-DEEPENING-SEARCH do livro do Russell e Norvig:
+// a busca limitada com limite 0, 1, 2... até não haver corte. Acha o destino com o menor número de
+// arestas (como a busca em largura), guardando só o caminho atual na memória.
+//   v.cor, v.prof, v.π, caminho e cortados -> como na busca limitada (zerados a cada rodada)
+
+APROFUNDAMENTO-ITERATIVO(G, s, destino)
+    limite = 0                                          // @limite_zero
+    enquanto VERDADEIRO                                 // @cada_rodada
+        para cada vértice v em G.V                      // @cada_vertice
+            v.cor = BRANCO                              // @pinta_branco
+            v.π = NIL                                   // @pai_nulo
+        apagar todos os v.prof                          // @zera_prof
+        caminho = ∅                                     // @esvazia_caminho
+        cortados = ∅                                    // @nova_iteracao
+        resultado = DLS(G, s, destino, limite, 0)       // @chama_dls
+        se resultado ≠ CORTE                            // @se_nao_cortou
+            devolva resultado                           // @devolve
+        limite = limite + 1                             // @aumenta_limite
+
+DLS(G, u, destino, limite, prof)
+    u.cor = CINZA                                       // @entrar
+    u.prof = prof                                       // @anota_prof
+    EMPILHAR(caminho, u)                                // @empilha
+    se u == destino                                     // @testa_destino
+        devolva ACHOU                                   // @chegou
+    se limite == 0                                      // @testa_limite
+        DESEMPILHAR(caminho)                            // @desempilha_cortado
+        u.cor = PRETO                                   // @pinta_cortado
+        acrescentar u em cortados                       // @corte
+        devolva CORTE                                   // @devolve_corte
+    houve_corte = FALSO                                 // @sem_corte
+    para cada v em G.Adj[u]                             // @cada_vizinho
+        se v está em caminho                            // @ignorar_vizinho
+            pule para o próximo v                       // @pula_vizinho
+        v.π = u                                         // @pai_v
+        resultado = DLS(G, v, destino, limite − 1, prof + 1)        // @desce
+        se resultado == ACHOU                           // @se_achou
+            devolva ACHOU                               // @repassa_achou
+        se resultado == CORTE                           // @se_cortou
+            houve_corte = VERDADEIRO                    // @houve_corte
+    DESEMPILHAR(caminho)                                // @desempilha
+    u.cor = PRETO                                       // @subir
+    se houve_corte                                      // @se_houve_corte
+        devolva CORTE                                   // @devolve_corte_de_baixo
+    devolva FALHA                                       // @devolve_falha

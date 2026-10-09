@@ -1,0 +1,53 @@
+// Busca bidirecional: duas buscas em largura, da origem s (frente) e do destino t (trás), que se
+// revezam expandindo UMA CAMADA INTEIRA de cada vez, até um lado achar um vértice do outro.
+//   v.cor  -> BRANCO (ninguém descobriu), CINZA (na fila de um lado) ou PRETO (expandido)
+//   v.lado -> FRENTE ou TRÁS: qual busca descobriu v
+//   v.d, v.π -> da frente (desde s);  v.d', v.π' -> de trás (até t)
+//   G.Adj'[v] -> quem CHEGA em v (o lado de trás anda pelas arestas ao contrário)
+
+BIDIRECIONAL(G, s, t)
+    para cada vértice v em G.V                          // @cada_vertice
+        v.cor = BRANCO                                  // @pinta_branco
+        v.lado = NIL                                    // @sem_lado
+        v.d = ∞                                         // @d_infinito
+        v.d' = ∞                                        // @d_tras_infinito
+        v.π = NIL                                       // @pai_nulo
+        v.π' = NIL                                      // @inicializar
+    s.cor = CINZA                                       // @origem_cinza
+    s.lado = FRENTE                                     // @origem_lado
+    s.d = 0                                             // @origem_d
+    ENFILEIRAR(Q, s)                                    // @origem
+    se s == t                                           // @mesmo_vertice
+        encontro = (s, s)                               // @encontro_na_origem
+        devolva VERDADEIRO                              // @devolve_na_origem
+    t.cor = CINZA                                       // @destino_cinza
+    t.lado = TRÁS                                       // @destino_lado
+    t.d' = 0                                            // @destino_d
+    ENFILEIRAR(Q', t)                                   // @origem_tras
+    enquanto Q ≠ ∅ e Q' ≠ ∅                             // @enquanto_filas
+        se EXPANDIR(FRENTE)                             // @expande_frente
+            devolva VERDADEIRO                          // @achou_pela_frente
+        se EXPANDIR(TRÁS)                               // @expande_tras
+            devolva VERDADEIRO                          // @achou_por_tras
+    devolva FALSO                                       // @sem_encontro
+
+EXPANDIR(lado)
+    se lado == FRENTE                                   // @qual_lado
+        fila, adj, d, π, outro = Q, G.Adj, .d, .π, TRÁS               // @usa_frente
+    senão
+        fila, adj, d, π, outro = Q', G.Adj', .d', .π', FRENTE         // @usa_tras
+    tamanho = |fila|                                    // @nova_camada
+    repita tamanho vezes                                // @cada_da_camada
+        u = DESENFILEIRAR(fila)                         // @desenfileirar
+        para cada v em adj[u]                           // @cada_vizinho
+            se v.lado == outro                          // @se_do_outro_lado
+                encontro = (u, v)                       // @encontro
+                devolva VERDADEIRO                      // @devolve_encontro
+            se v.cor == BRANCO                          // @ignorar_vizinho
+                v.cor = CINZA                           // @pinta_cinza
+                v.lado = lado                           // @anota_lado
+                v.d = u.d + 1                           // @d_mais_um
+                v.π = u                                 // @pai_v
+                ENFILEIRAR(fila, v)                     // @descobrir_vizinho
+        u.cor = PRETO                                   // @terminar_vertice
+    devolva FALSO                                       // @camada_sem_encontro

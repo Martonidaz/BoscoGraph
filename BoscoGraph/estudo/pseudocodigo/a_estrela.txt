@@ -1,0 +1,50 @@
+// Busca A* (A estrela): sai da fronteira Q o vértice de menor f = g + h
+//   v.g -> o custo do melhor caminho conhecido de s até v (como o d do Dijkstra)
+//   v.h -> a estimativa de quanto falta de v até o destino
+//   v.f -> v.g + v.h: a estimativa do custo total de um caminho que passa por v
+// Com h admissível (nunca maior que o custo real), o A* acha o caminho de menor custo.
+// Se h não for consistente, um vértice já expandido pode ganhar um caminho mais barato:
+// aí ele é REABERTO (volta para a fronteira).
+
+A-ESTRELA(G, w, s, destino)
+    para cada vértice v em G.V                          // @cada_vertice
+        v.cor = BRANCO                                  // @pinta_branco
+        v.g = ∞                                         // @g_infinito
+        v.f = ∞                                         // @f_infinito
+        v.π = NIL                                       // @inicializar
+    s.g = 0                                             // @origem_g
+    s.f = s.h                                           // @origem_f
+    s.cor = CINZA                                       // @origem_cinza
+    Q = ∅
+    INSERIR(Q, s)                                       // @origem
+    enquanto Q ≠ ∅                                      // @enquanto_fila
+        u = EXTRAIR-MÍNIMO(Q)                           // @chama_extrair
+        u.cor = PRETO                                   // @extrair
+        se u == destino                                 // @se_destino
+            devolva VERDADEIRO                          // @chegou
+        para cada v em G.Adj[u]                         // @cada_vizinho
+            RELAXAR(u, v, w)                            // @chama_relaxar
+    devolva FALSO                                       // @nao_chegou
+
+EXTRAIR-MÍNIMO(Q)
+    // o vértice de Q com o menor f (no empate, o que entrou primeiro)
+    menor = o primeiro de Q                             // @menor_primeiro
+    para cada v em Q                                    // @cada_da_fila
+        se v.f < menor.f                                // @compara_f
+            menor = v                                   // @novo_menor
+    tirar menor de Q                                    // @tira_da_fila
+    devolva menor                                       // @devolve_menor
+
+RELAXAR(u, v, w)
+    // como o RELAX do Dijkstra, mas a prioridade do vizinho passa a ser f = g + h
+    novo = u.g + w(u, v)                                // @soma
+    se novo < v.g                                       // @relaxar_nao
+        v.g = novo                                      // @novo_g
+        v.f = novo + v.h                                // @relaxar_melhorou
+        v.π = u                                         // @pai_v
+        se v.cor == BRANCO                              // @se_branco
+            v.cor = CINZA                               // @pinta_cinza
+            INSERIR(Q, v)                               // @entra_na_fila
+        senão se v.cor == PRETO                         // @se_preto
+            v.cor = CINZA                               // @relaxar_reabriu
+            INSERIR(Q, v)                               // @reentra_na_fila

@@ -1,0 +1,144 @@
+{
+  "nome": "Exemplo - Árvore geradora mínima (CLRS 23.1)",
+  "vertices": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i"
+  ],
+  "arestas": [
+    {
+      "origem": "h",
+      "destino": "g",
+      "nome": "",
+      "peso": 1
+    },
+    {
+      "origem": "i",
+      "destino": "c",
+      "nome": "",
+      "peso": 2
+    },
+    {
+      "origem": "g",
+      "destino": "f",
+      "nome": "",
+      "peso": 2
+    },
+    {
+      "origem": "a",
+      "destino": "b",
+      "nome": "",
+      "peso": 4
+    },
+    {
+      "origem": "c",
+      "destino": "f",
+      "nome": "",
+      "peso": 4
+    },
+    {
+      "origem": "i",
+      "destino": "g",
+      "nome": "",
+      "peso": 6
+    },
+    {
+      "origem": "c",
+      "destino": "d",
+      "nome": "",
+      "peso": 7
+    },
+    {
+      "origem": "h",
+      "destino": "i",
+      "nome": "",
+      "peso": 7
+    },
+    {
+      "origem": "a",
+      "destino": "h",
+      "nome": "",
+      "peso": 8
+    },
+    {
+      "origem": "b",
+      "destino": "c",
+      "nome": "",
+      "peso": 8
+    },
+    {
+      "origem": "d",
+      "destino": "e",
+      "nome": "",
+      "peso": 9
+    },
+    {
+      "origem": "e",
+      "destino": "f",
+      "nome": "",
+      "peso": 10
+    },
+    {
+      "origem": "b",
+      "destino": "h",
+      "nome": "",
+      "peso": 11
+    },
+    {
+      "origem": "d",
+      "destino": "f",
+      "nome": "",
+      "peso": 14
+    }
+  ],
+  "ordenar": true,
+  "inicio": "a",
+  "direcionado": false,
+  "algoritmo": "prim",
+  "destino": null,
+  "posicoes": {
+    "a": [
+      0,
+      100
+    ],
+    "b": [
+      100,
+      20
+    ],
+    "c": [
+      220,
+      20
+    ],
+    "d": [
+      340,
+      20
+    ],
+    "e": [
+      440,
+      100
+    ],
+    "f": [
+      340,
+      180
+    ],
+    "g": [
+      220,
+      180
+    ],
+    "h": [
+      100,
+      180
+    ],
+    "i": [
+      175,
+      100
+    ]
+  },
+  "arrumacao": "arquivo"
+}

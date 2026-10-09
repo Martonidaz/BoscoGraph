@@ -1,0 +1,100 @@
+{
+  "nome": "Exemplo - Dijkstra (CLRS 24.6)",
+  "vertices": [
+    "s",
+    "t",
+    "x",
+    "y",
+    "z"
+  ],
+  "arestas": [
+    {
+      "origem": "s",
+      "destino": "t",
+      "nome": "",
+      "peso": 10
+    },
+    {
+      "origem": "s",
+      "destino": "y",
+      "nome": "",
+      "peso": 5
+    },
+    {
+      "origem": "t",
+      "destino": "x",
+      "nome": "",
+      "peso": 1
+    },
+    {
+      "origem": "t",
+      "destino": "y",
+      "nome": "",
+      "peso": 2
+    },
+    {
+      "origem": "y",
+      "destino": "t",
+      "nome": "",
+      "peso": 3
+    },
+    {
+      "origem": "y",
+      "destino": "x",
+      "nome": "",
+      "peso": 9
+    },
+    {
+      "origem": "y",
+      "destino": "z",
+      "nome": "",
+      "peso": 2
+    },
+    {
+      "origem": "x",
+      "destino": "z",
+      "nome": "",
+      "peso": 4
+    },
+    {
+      "origem": "z",
+      "destino": "x",
+      "nome": "",
+      "peso": 6
+    },
+    {
+      "origem": "z",
+      "destino": "s",
+      "nome": "",
+      "peso": 7
+    }
+  ],
+  "ordenar": true,
+  "inicio": "s",
+  "direcionado": true,
+  "algoritmo": "dijkstra",
+  "destino": "x",
+  "posicoes": {
+    "s": [
+      0,
+      100
+    ],
+    "t": [
+      110,
+      20
+    ],
+    "x": [
+      230,
+      20
+    ],
+    "y": [
+      110,
+      180
+    ],
+    "z": [
+      230,
+      180
+    ]
+  },
+  "arrumacao": "arquivo"
+}

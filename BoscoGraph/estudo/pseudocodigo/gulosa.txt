@@ -1,0 +1,34 @@
+// Busca gulosa pela melhor escolha (greedy best-first): sai da fronteira Q sempre o vértice de
+// menor h, a ESTIMATIVA de quanto falta até o destino. Não olha quanto já gastou: costuma chegar
+// rápido, mas não garante o caminho de menor custo.
+//   v.h   -> a heurística (estimativa até o destino)
+//   v.cor -> BRANCO (não visto), CINZA (na fronteira) ou PRETO (já expandido)
+//   v.π   -> de onde a busca chegou em v
+
+BUSCA-GULOSA(G, s, destino)
+    para cada vértice v em G.V                          // @cada_vertice
+        v.cor = BRANCO                                  // @pinta_branco
+        v.π = NIL                                       // @inicializar
+    s.cor = CINZA                                       // @origem_cinza
+    Q = ∅
+    INSERIR(Q, s)                                       // @origem
+    enquanto Q ≠ ∅                                      // @enquanto_fila
+        u = EXTRAIR-MÍNIMO(Q)                           // @chama_extrair
+        u.cor = PRETO                                   // @extrair
+        se u == destino                                 // @se_destino
+            devolva VERDADEIRO                          // @chegou
+        para cada v em G.Adj[u]                         // @cada_vizinho
+            se v.cor == BRANCO                          // @ignorar_vizinho
+                v.cor = CINZA                           // @pinta_cinza
+                v.π = u                                 // @pai_v
+                INSERIR(Q, v)                           // @descobrir_vizinho
+    devolva FALSO                                       // @nao_chegou
+
+EXTRAIR-MÍNIMO(Q)
+    // o vértice de Q com o menor h (no empate, o que entrou primeiro)
+    menor = o primeiro de Q                             // @menor_primeiro
+    para cada v em Q                                    // @cada_da_fila
+        se v.h < menor.h                                // @compara_h
+            menor = v                                   // @novo_menor
+    tirar menor de Q                                    // @tira_da_fila
+    devolva menor                                       // @devolve_menor

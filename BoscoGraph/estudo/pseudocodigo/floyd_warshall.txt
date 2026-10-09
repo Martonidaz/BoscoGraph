@@ -1,0 +1,32 @@
+// Algoritmo de Floyd-Warshall, como FLOYD-WARSHALL(W) do livro do Cormen (CLRS, capítulo 25):
+// o menor custo entre TODOS os pares de vértices, numa matriz.
+//   d[i][j]  -> o menor custo conhecido de i até j (∞ = ainda sem caminho)
+//   π[i][j]  -> o vértice que vem antes de j no melhor caminho de i até j
+// Na rodada de cada vértice k, cada par (i, j) pergunta: passar por k fica mais barato?
+// G.E -> as arestas na ordem de criação (no não orientado, nos dois sentidos); entre paralelas,
+//        a matriz fica com a mais barata. Devolve FALSO se algum d[i][i] < 0 (ciclo negativo).
+
+FLOYD-WARSHALL(G, w)
+    para cada vértice i em G.V                          // @cada_linha
+        criar a linha d[i]                              // @nova_linha_d
+        criar a linha π[i]                              // @nova_linha_pi
+        para cada vértice j em G.V                      // @cada_coluna
+            d[i][j] = ∞                                 // @d_infinito
+            π[i][j] = NIL                               // @pi_nulo
+        d[i][i] = 0                                     // @inicializar_linha
+    para cada aresta (u, v) em G.E                      // @cada_arco
+        se w(u, v) < d[u][v]                            // @arco_nao
+            d[u][v] = w(u, v)                           // @arco_melhorou
+            π[u][v] = u                                 // @pi_do_arco
+    para cada vértice k em G.V                          // @rodada_k
+        para cada vértice i em G.V                      // @cada_i
+            para cada vértice j em G.V                  // @cada_j
+                se d[i][k] == ∞ ou d[k][j] == ∞         // @passa_por_k
+                    pule para o próximo j               // @pula_par
+                se d[i][k] + d[k][j] < d[i][j]          // @par_nao
+                    d[i][j] = d[i][k] + d[k][j]         // @par_melhorou
+                    π[i][j] = π[k][j]                   // @pi_par
+    para cada vértice i em G.V                          // @verifica_diagonal
+        se d[i][i] < 0                                  // @testa_diagonal
+            devolva FALSO                               // @diagonal_negativa
+    devolva VERDADEIRO                                  // @sem_ciclo_negativo

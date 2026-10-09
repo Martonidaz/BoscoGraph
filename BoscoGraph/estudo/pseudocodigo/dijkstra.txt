@@ -1,0 +1,40 @@
+// Algoritmo de Dijkstra, como DIJKSTRA(G, w, s) do livro do Cormen (CLRS), na versão em que a
+// fila de prioridade Q só guarda os vértices já alcançados ("busca de custo uniforme")
+//   v.d   -> o menor custo conhecido de s até v (∞ = ainda não alcançado)
+//   v.π   -> o vértice anterior no melhor caminho conhecido
+//   v.cor -> BRANCO (não alcançado), CINZA (em Q) ou PRETO (d definitivo)
+//   w(u, v) -> o peso da aresta u → v
+
+DIJKSTRA(G, w, s)
+    para cada vértice v em G.V                          // @cada_vertice
+        v.cor = BRANCO                                  // @pinta_branco
+        v.d = ∞                                         // @d_infinito
+        v.π = NIL                                       // @inicializar
+    s.d = 0                                             // @origem_d
+    s.cor = CINZA                                       // @origem_cinza
+    Q = ∅
+    INSERIR(Q, s)                                       // @origem
+    enquanto Q ≠ ∅                                      // @enquanto_fila
+        u = EXTRAIR-MÍNIMO(Q)                           // @chama_extrair
+        u.cor = PRETO                                   // @extrair
+        para cada v em G.Adj[u]                         // @cada_vizinho
+            RELAXAR(u, v, w)                            // @chama_relaxar
+
+EXTRAIR-MÍNIMO(Q)
+    // o vértice de Q com o menor d (no empate, o que entrou primeiro)
+    menor = o primeiro de Q                             // @menor_primeiro
+    para cada v em Q                                    // @cada_da_fila
+        se v.d < menor.d                                // @compara_d
+            menor = v                                   // @novo_menor
+    tirar menor de Q                                    // @tira_da_fila
+    devolva menor                                       // @devolve_menor
+
+RELAXAR(u, v, w)
+    // passar por u deixa o caminho até v mais barato?
+    novo = u.d + w(u, v)                                // @soma
+    se novo < v.d                                       // @relaxar_nao
+        v.d = novo                                      // @relaxar_melhorou
+        v.π = u                                         // @pai_v
+        se v.cor == BRANCO                              // @se_branco
+            v.cor = CINZA                               // @pinta_cinza
+            INSERIR(Q, v)                               // @entra_na_fila

@@ -1,0 +1,23 @@
+// Algoritmo de Kruskal (árvore geradora mínima), como MST-KRUSKAL(G, w) do livro do Cormen (CLRS)
+//   A       -> as arestas da árvore, na ordem em que entram
+//   v.conj  -> o representante do conjunto de v: os vértices já ligados pelas arestas de A têm o mesmo
+//              (MAKE-SET(v) faz v.conj = v; FIND-SET(v) é v.conj)
+// As arestas são examinadas da mais leve para a mais pesada (as de mesmo peso, na ordem em que foram
+// criadas). UNIR percorre todos os vértices; o livro usa uma floresta de conjuntos, quase O(1).
+
+KRUSKAL(G, w)
+    A = ∅
+    para cada vértice v em G.V                          // @cada_vertice
+        MAKE-SET(v)                                     // @criar_conjunto
+    ordenar as arestas de G.E pelo peso w               // @ordenar_arestas
+    para cada aresta (u, v) nessa ordem                 // @cada_aresta
+        se FIND-SET(u) == FIND-SET(v)                   // @rejeitar
+            pule para a próxima aresta                  // @pula_aresta
+        A = A ∪ {(u, v)}                                // @aceitar
+        UNIR(FIND-SET(u), FIND-SET(v))                  // @unir
+
+UNIR(a, b)
+    // todos os vértices do conjunto b passam para o conjunto a
+    para cada vértice x em G.V                          // @cada_do_conjunto
+        se x.conj == b                                  // @mesmo_conjunto
+            x.conj = a                                  // @muda_conjunto

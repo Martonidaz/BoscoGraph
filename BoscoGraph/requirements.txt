@@ -1,0 +1,18 @@
+# Bibliotecas do BoscoGraph. O programa em si só precisa do Python (com o Tkinter, que já vem no
+# Windows): estas são para IMPORTAR grafos de PDF e de imagem e para EXPORTAR o desenho em PNG.
+# Sem elas, o resto funciona igual (o SVG e o PDF não precisam de nada).
+#     pip install -r requirements.txt
+#
+# Versões em que os testes passaram: pymupdf 1.28, opencv 5.0, numpy 2.5, pytesseract 0.3.13, pillow 12.
+
+# Fase 2 da importação: PDF
+pymupdf>=1.24
+
+# Fase 3 da importação: imagem e foto
+opencv-python-headless>=4.8
+numpy>=1.24
+# O pytesseract só chama o programa Tesseract, que é instalado à parte (veja o LEIAME)
+pytesseract>=0.3.10
+
+# Exportar o desenho em PNG (Exportar > Imagem do desenho (PNG))
+pillow>=10.0

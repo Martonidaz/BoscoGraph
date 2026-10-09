@@ -1,0 +1,47 @@
+// Busca em profundidade, como DFS(G) e DFS-VISIT(G, u) do livro do Cormen (CLRS)
+//   u.cor  -> BRANCO (não descoberto), CINZA (em exploração) ou PRETO (terminado)
+//   u.d, u.f -> os tempos de descoberta e de término;  u.π -> de onde a busca chegou
+//   tipo(u, v) -> o tipo da aresta: árvore, retorno, avanço ou cruzamento
+//   voltas(u, v) -> no não orientado, quantas vezes a aresta u — v já foi examinada pelo
+//                   outro lado (começa em 0 para todo par)
+
+DFS(G, ordem)
+    para cada vértice u em G.V                          // @pinta_cada
+        u.cor = BRANCO                                  // @pintar_branco
+        u.π = NIL                                       // @pai_nulo
+    tempo = 0                                           // @zerar_tempo
+    para cada vértice u em ordem                        // @cada_raiz
+        se u.cor == BRANCO                              // @raiz_branca
+            DFS-VISIT(G, u)                             // @nova_arvore
+
+DFS-VISIT(G, u)
+    tempo = tempo + 1                                   // @tempo_d
+    u.d = tempo                                         // @anota_d
+    u.cor = CINZA                                       // @descobrir
+    para cada v em G.Adj[u]                             // @cada_vizinho
+        se voltas(u, v) > 0                             // @e_volta
+            voltas(u, v) = voltas(u, v) − 1             // @revisitar
+        senão se v.cor == BRANCO                        // @vizinho_branco
+            tipo(u, v) = "árvore"                       // @examinar_arvore
+            ANOTAR-VOLTA(u, v)                          // @volta_arvore
+            v.π = u                                     // @pai_v
+            DFS-VISIT(G, v)                             // @desce
+        senão
+            tipo(u, v) = CLASSIFICAR(u, v)              // @examinar_outra
+            ANOTAR-VOLTA(u, v)                          // @volta_outra
+    u.cor = PRETO                                       // @pintar_preto
+    tempo = tempo + 1                                   // @tempo_f
+    u.f = tempo                                         // @finalizar
+
+CLASSIFICAR(u, v)
+    // a aresta u → v leva a um vértice já descoberto
+    se v.cor == CINZA                                   // @se_cinza
+        devolva "retorno"                               // @retorno
+    se u.d < v.d                                        // @se_descendente
+        devolva "avanço"                                // @avanco
+    devolva "cruzamento"                                // @cruzamento
+
+ANOTAR-VOLTA(u, v)
+    // só no não orientado (e fora do laço): a outra metade da aresta, v — u, fica anotada
+    se G não é orientado e u ≠ v                        // @se_nao_orientado
+        voltas(v, u) = voltas(v, u) + 1                 // @anota_volta

@@ -1,0 +1,24 @@
+// Busca em largura, como BFS(G, s) do livro do Cormen (CLRS)
+//   v.cor -> BRANCO (não descoberto), CINZA (descoberto, na fila) ou PRETO (terminado)
+//   v.d   -> o menor número de arestas de s até v (∞ = não alcançado)
+//   v.π   -> de qual vértice a busca chegou em v
+//   Q     -> a fila: ENFILEIRAR põe no fim, DESENFILEIRAR tira do começo
+
+BFS(G, s)
+    para cada vértice v em G.V                          // @cada_vertice
+        v.cor = BRANCO                                  // @pinta_branco
+        v.d = ∞                                         // @d_infinito
+        v.π = NIL                                       // @inicializar
+    s.cor = CINZA                                       // @origem_cinza
+    s.d = 0                                             // @origem_d
+    Q = ∅
+    ENFILEIRAR(Q, s)                                    // @origem
+    enquanto Q ≠ ∅                                      // @enquanto_fila
+        u = DESENFILEIRAR(Q)                            // @desenfileirar
+        para cada v em G.Adj[u]                         // @cada_vizinho
+            se v.cor == BRANCO                          // @ignorar_vizinho
+                v.cor = CINZA                           // @pinta_cinza
+                v.d = u.d + 1                           // @d_mais_um
+                v.π = u                                 // @pai_v
+                ENFILEIRAR(Q, v)                        // @descobrir_vizinho
+        u.cor = PRETO                                   // @terminar_vertice

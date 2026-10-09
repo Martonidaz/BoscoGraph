@@ -1,0 +1,13 @@
+﻿TERMOS DE USO DO BOSCOGRAPH
+
+O BoscoGraph é um programa educacional e gratuito, feito na disciplina de Teoria dos Grafos para ajudar a estudar os algoritmos de grafos.
+
+1. Você pode instalar, usar e compartilhar o BoscoGraph à vontade para estudar e ensinar.
+
+2. O BoscoGraph é oferecido como está, sem garantia de nenhum tipo. Os autores não respondem por perdas causadas pelo uso do programa.
+
+3. Os grafos e modelos que você salva são seus: ficam na sua pasta de usuário (%APPDATA%\BoscoGraph) e continuam lá se você desinstalar o programa.
+
+4. O BoscoGraph não usa a internet: nada do que você faz nele sai do seu computador.
+
+Ao clicar em "Eu aceito o acordo", você concorda com estes termos.

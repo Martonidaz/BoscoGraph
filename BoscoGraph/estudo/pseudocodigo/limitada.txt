@@ -1,0 +1,40 @@
+// Busca em profundidade limitada, como RECURSIVE-DLS do livro do Russell e Norvig
+// (sem repetir vértices do caminho atual, senão a busca andaria em círculo)
+//   v.cor -> BRANCO (fora do caminho), CINZA (no caminho atual) ou PRETO (já saiu do caminho)
+//   v.prof, v.π -> a profundidade e o pai com que v entrou no caminho (a última vez)
+//   caminho -> o caminho atual, da origem até o vértice de agora (a pilha da recursão)
+//   cortados -> onde o limite cortou
+// Devolve ACHOU, CORTE (o limite cortou algum ramo) ou FALHA (nenhum limite maior ajudaria)
+
+BUSCA-LIMITADA(G, s, destino, limite)
+    para cada vértice v em G.V                          // @cada_vertice
+        v.cor = BRANCO                                  // @pinta_branco
+        v.π = NIL                                       // @inicializar
+    devolva DLS(G, s, destino, limite, 0)               // @chama_dls
+
+DLS(G, u, destino, limite, prof)
+    u.cor = CINZA                                       // @entrar
+    u.prof = prof                                       // @anota_prof
+    EMPILHAR(caminho, u)                                // @empilha
+    se u == destino                                     // @testa_destino
+        devolva ACHOU                                   // @chegou
+    se limite == 0                                      // @testa_limite
+        DESEMPILHAR(caminho)                            // @desempilha_cortado
+        u.cor = PRETO                                   // @pinta_cortado
+        acrescentar u em cortados                       // @corte
+        devolva CORTE                                   // @devolve_corte
+    houve_corte = FALSO                                 // @sem_corte
+    para cada v em G.Adj[u]                             // @cada_vizinho
+        se v está em caminho                            // @ignorar_vizinho
+            pule para o próximo v                       // @pula_vizinho
+        v.π = u                                         // @pai_v
+        resultado = DLS(G, v, destino, limite − 1, prof + 1)        // @desce
+        se resultado == ACHOU                           // @se_achou
+            devolva ACHOU                               // @repassa_achou
+        se resultado == CORTE                           // @se_cortou
+            houve_corte = VERDADEIRO                    // @houve_corte
+    DESEMPILHAR(caminho)                                // @desempilha
+    u.cor = PRETO                                       // @subir
+    se houve_corte                                      // @se_houve_corte
+        devolva CORTE                                   // @devolve_corte_de_baixo
+    devolva FALHA                                       // @devolve_falha
